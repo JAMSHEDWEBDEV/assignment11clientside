@@ -7,11 +7,13 @@ import My_bids from "../Pages/My_Bids/My_bids";
 import Bid_Request from "../Pages/Bid_Request/Bid_Request";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import PageNotFound from "../Pages/NotFoundPage/PageNotFound";
 
 const Router = createBrowserRouter([
     {
         path:"/",
         element:<MainLayout></MainLayout>,
+        errorElement:<PageNotFound></PageNotFound>,
         children:[
             {
                 path:"/",
