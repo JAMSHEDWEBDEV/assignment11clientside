@@ -1,6 +1,35 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Register = () => {
+
+    const {createUser} = useContext(AuthContext);
+
+    const handleRegister = e =>{
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const photo = form.photo.value;
+        console.log(name,email,password,photo);
+
+        createUser(email,password)
+        .then(result =>{
+            if(result){
+                toast.success('Registration successful.Thank you');
+            }
+        })
+        .catch(error =>{
+            if(error){
+                toast.error('Opps! This email already Registered');
+            }
+        })
+    }
+
+
     return (
         <div className="hero min-h-screen mt-4 bg-base-200 mb-5 pb-9">
             <div className="">
@@ -8,7 +37,7 @@ const Register = () => {
                     <h1 className="text-2xl lg:text-5xl font-bold my-5">Register to Exertio World</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <form className="card-body">
+                    <form className="card-body" onSubmit={handleRegister}>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
