@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import { FaRegHandPointRight } from 'react-icons/fa';
 
 const Login = () => {
     return (
-        <div className="hero h-[550px] mt-6 bg-base-200 mb-9">
+        <div className="hero min-h-screen mt-6 bg-base-200 mb-9">
             <div className="">
                 <div className="lg:ml-[-50px]">
                     <h1 className="text-2xl lg:text-5xl font-bold my-5">Login to Exertio World</h1>
@@ -27,10 +28,15 @@ const Login = () => {
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
-                        <div className="form-control mt-6">
+                        <div className="form-control">
                             <button className="btn btn-primary">Login</button>
                         </div>
                     </form>
+                    <div>
+                        <p className="text-center">OR</p>
+                        <p className="text-center font-bold flex gap-3 justify-center items-center">Sign In With <span className="text-indigo-800 font-bold text-2xl"><FaRegHandPointRight/></span> <Link><span className="text-xl text-red-500 font-bold">Google</span></Link> </p>
+                        <div className="divider"></div>
+                    </div>
                     <div className="px-5 text-center">
                         <p className="text-[16px] font-bold mb-5"> Do not have an account ? <span className="text-red-500"><Link to="/register">Register here</Link></span> </p>
                     </div>
