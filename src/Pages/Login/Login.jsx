@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegHandPointRight } from 'react-icons/fa';
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider/AuthProvider";
@@ -6,7 +6,8 @@ import toast from "react-hot-toast";
 
 const Login = () => {
 
-    const {signInUser} = useContext(AuthContext);
+    const {signInUser,signInWithGoogle} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleLogin = e =>{
         e.preventDefault();
@@ -20,11 +21,26 @@ const Login = () => {
             if(result){
                 toast.success('successfully logged in');
             }
+            e.target.reset();
+            navigate('/');
         })
         .catch(error =>{
             if(error){
-                toast.error('Opps!This email already used');
+                toast.error('Opps! Password does not match');
             }
+        })
+    }
+
+    const handleSignInGoogle = ()=>{
+        signInWithGoogle()
+        .then(result =>{
+            if(result){
+                toast.success('You are successfully logged in');
+            }
+            navigate('/');
+        })
+        .catch(error =>{
+            console.error(error);
         })
     }
 
@@ -60,7 +76,7 @@ const Login = () => {
                     </form>
                     <div>
                         <p className="text-center underline underline-offset-4 mb-4 font-bold">OR</p>
-                        <p className="text-center font-bold flex gap-3 justify-center items-center">Sign In With <span className="text-indigo-800 font-bold text-2xl"><FaRegHandPointRight/></span> <Link><span className="text-xl text-red-500 font-bold">Google</span></Link> </p>
+                        <p className="text-center font-bold flex gap-3 justify-center items-center">Sign In With <span className="text-indigo-800 font-bold text-2xl"><FaRegHandPointRight/></span> <Link onClick={handleSignInGoogle}><span className="text-xl text-red-500 font-bold">Google</span></Link> </p>
                         <div className="divider"></div>
                     </div>
                     <div className="px-5 text-center">

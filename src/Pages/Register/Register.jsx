@@ -21,6 +21,7 @@ const Register = () => {
             if(result){
                 toast.success('Registration successful.Thank you');
             }
+            e.target.reset();
         })
         .catch(error =>{
             if(error){

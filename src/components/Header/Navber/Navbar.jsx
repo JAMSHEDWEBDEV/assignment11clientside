@@ -1,8 +1,11 @@
 
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/exertion-logo.svg'
+import { useContext } from 'react';
+import { AuthContext } from '../../../Providers/AuthProvider/AuthProvider';
 
 const Navbar = () => {
+    const {user,logOut} = useContext(AuthContext);
 
     const navlinks = <>
     <NavLink to="/" className={({isActive})=>isActive? "bg-red-400 rounded":"bg-none"}><li className='font-bold text-[16px]'><a>Home</a></li></NavLink>
@@ -11,6 +14,16 @@ const Navbar = () => {
     <NavLink to="/my_bid" className={({isActive})=>isActive? "bg-red-400 rounded":"bg-none"} ><li className='font-bold text-[16px]'><a>My Bids</a></li></NavLink>
     <NavLink to="/bid_request" className={({isActive})=>isActive? "bg-red-400 rounded":"bg-none"}><li className='font-bold text-[16px]'><a>Bid Requests</a></li></NavLink>
     </>
+
+    const handleLogout = ()=>{
+        logOut()
+        .then(result =>{
+            console.log(result.user)
+        })
+        .catch(error =>{
+            console.error(error)
+        })
+    }
 
     return (
         <div className="navbar bg-gray-100 px-5">
@@ -31,7 +44,15 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to="/login"><button className='btn bg-red-400 font-bold text-[16px]'>Login</button></Link>
+                {
+                    user? <>
+                    <h1>{user?.displayName}</h1>
+                    <div className='mx-3 h-[50px] w-[50px]'>
+                        <img className='rounded-full' src={user?.photoURL} alt="profile" />
+                    </div>
+                    <button onClick={handleLogout} className='btn bg-red-400 font-bold text-[16px]'>Logout</button>
+                    </>: <Link to="/login"><button className='btn bg-red-400 font-bold text-[16px]'>Login</button></Link>
+                }
             </div>
         </div>
     );
