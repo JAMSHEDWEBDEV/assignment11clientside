@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Job_cart = ({ job,handleDelete }) => {
 
@@ -22,7 +23,7 @@ const Job_cart = ({ job,handleDelete }) => {
                             >Delete</button>
                         </div>
                         <div>
-                            <button className="btn bg-red-400">Update</button>
+                            <Link to={`/update/${_id}`}><button className="btn bg-red-400">Update</button></Link>
                         </div>
                     </div>
                 </div>
