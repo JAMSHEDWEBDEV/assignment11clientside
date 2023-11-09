@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaRegHandPointRight } from 'react-icons/fa';
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider/AuthProvider";
@@ -8,6 +8,7 @@ const Login = () => {
 
     const {signInUser,signInWithGoogle} = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogin = e =>{
         e.preventDefault();
@@ -22,7 +23,7 @@ const Login = () => {
                 toast.success('successfully logged in');
             }
             e.target.reset();
-            navigate('/');
+            navigate(location?.state? location.state : '/');
         })
         .catch(error =>{
             if(error){
@@ -37,7 +38,7 @@ const Login = () => {
             if(result){
                 toast.success('You are successfully logged in');
             }
-            navigate('/');
+            navigate(location?.state? location.state : '/');
         })
         .catch(error =>{
             console.error(error);

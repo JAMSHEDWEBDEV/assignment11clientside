@@ -9,6 +9,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import PageNotFound from "../Pages/NotFoundPage/PageNotFound";
 import Update_Job from "../Pages/Update_Job/Update_Job";
+import PrivateRoute from "../components/PrivateRoute/PrivateRoute";
 
 const Router = createBrowserRouter([
     {
@@ -22,11 +23,11 @@ const Router = createBrowserRouter([
             },
             {
                 path:"/add_job",
-                element:<Add_Job></Add_Job>
+                element:<PrivateRoute><Add_Job></Add_Job></PrivateRoute>
             },
             {
                 path:"/post_job",
-                element:<Post_job></Post_job>
+                element:<PrivateRoute><Post_job></Post_job></PrivateRoute>
             },
             {
                 path:"/my_bid",
