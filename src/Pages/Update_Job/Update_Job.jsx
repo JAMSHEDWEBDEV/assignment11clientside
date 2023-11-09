@@ -22,7 +22,7 @@ const Update_Job = () => {
         const Description = formData.description.value;
         const updatedData = {job_title, category, Maximum_Price, Minimum_Price, deadline, Description};
 
-        fetch(`http://localhost:5000/postJobs/${_id}`, {
+        fetch(`https://exertio-jobsmarket-server.vercel.app/postJobs/${_id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

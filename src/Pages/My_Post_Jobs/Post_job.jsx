@@ -6,7 +6,7 @@ const Post_job = () => {
     const [myPostJobs, setMyPostJobs] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/postJobs')
+        fetch('https://exertio-jobsmarket-server.vercel.app/postJobs')
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -26,7 +26,8 @@ const Post_job = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/postJobs/${id}`, {
+                fetch(`https://exertio-jobsmarket-server-pg3oxgy0z-md-jamshed-mias-projects.ve
+rcel.app/postJobs/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

@@ -26,7 +26,7 @@ const Add_Job = () => {
             Description: description
         }
         console.log(postJob);
-        fetch('http://localhost:5000/postJobs',{
+        fetch('https://exertio-jobsmarket-server.vercel.app/postJobs',{
             method: 'POST',
             headers:{
                 'content-type':'application/json'

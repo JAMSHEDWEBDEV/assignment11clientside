@@ -48,7 +48,7 @@ const Router = createBrowserRouter([
             {
                 path:"/update/:id",
                 element:<Update_Job></Update_Job>,
-                loader:({params})=>fetch(`http://localhost:5000/postJobs/${params.id}`)
+                loader:({params})=>fetch(`https://exertio-jobsmarket-server.vercel.app/postJobs/${params.id}`)
             }
         ]
     }
