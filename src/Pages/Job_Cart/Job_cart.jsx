@@ -1,7 +1,7 @@
 
-const Job_cart = ({ job }) => {
+const Job_cart = ({ job,handleDelete }) => {
 
-    const { job_title, category, email,deadline,Maximum_Price,Minimum_Price,Description } = job || {};
+    const { _id, job_title, category, email,deadline,Maximum_Price,Minimum_Price,Description } = job || {};
 
     return (
         <div>
@@ -16,7 +16,10 @@ const Job_cart = ({ job }) => {
                     <p>Short Description : {Description}</p>
                     <div className="flex justify-between">
                         <div>
-                            <button className="btn bg-red-400">Delete</button>
+                            <button 
+                            onClick={()=>handleDelete(_id)}
+                            className="btn bg-red-400"
+                            >Delete</button>
                         </div>
                         <div>
                             <button className="btn bg-red-400">Update</button>
